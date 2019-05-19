@@ -2,45 +2,83 @@ int frogX=400;
 int frogY=550;
 int carX=600;
 int carY=300;
-int carSpeed=(int)random(5, 10);
+int carSpeed_bob=(int)random(-10, 10);
+int carSpeed_bobo=(int)random(-10, 10);
+int carSpeed_bobob=(int)random(-10, 10);
+int carSpeed_bobobo=(int)random(-10, 10);
+boolean up= false;
+boolean down= false;
+boolean left= false;
+boolean right= false;
 void setup () {
   size(800, 600);
 }
 void draw() {
   background(0, 0, 0);
+  move();
   fill(211, 70, 188);
   ellipse(frogX, frogY, 50, 50);
-  bob.display();
-  bobo.display();
-  bobob.display();
-  bobobo.display();
   bob.move();
   bobo.move();
   bobob.move();
   bobobo.move();
+  bob.display();
+  bobo.display();
+  bobob.display();
+  bobobo.display();
+}
+void move() {
+  if (up&&(frogY>=5)) {
+    frogY=frogY-3;
+  } else if (down&&(frogY<=height-5)) {
+    frogY=frogY+3;
+  }
+  if (left&&(frogX>5)) {
+    frogX=frogX-3;
+  } else if (right&&(frogX<width-5)) {
+    frogX=frogX+3;
+  }
 }
 void keyPressed()
 {
   if (key == CODED) {
-    if (keyCode == UP&&(frogY>=5))
+    if (keyCode == UP)
     {
-      frogY=frogY-5;
-    } else if (keyCode == DOWN&&(frogY<=height-5))
+      up=true;
+    } else if (keyCode == DOWN)
     {
-      frogY=frogY+5;
-    } else if (keyCode == RIGHT&&(frogX<width-5))
+      down=true;
+    } else if (keyCode == RIGHT)
     {
-      frogX=frogX+5;
-    } else if (keyCode == LEFT&&(frogX>5))
+      right=true;
+    } else if (keyCode == LEFT)
     {
-      frogX=frogX-5;
+      left=true;
     }
   }
 }
-Car bob= new Car(-5, 600, 300, 200, 100);
-Car bobo= new Car(-5, 600, 300, 200, 100);
-Car bobob= new Car(-5, 600, 300, 200, 100);
-Car bobobo= new Car(-5, 600, 300, 200, 100);
+void keyReleased()
+{
+  if (key == CODED) {
+    if (keyCode == UP)
+    {
+      up=false;
+    } else if (keyCode == DOWN)
+    {
+      down=false;
+    } else if (keyCode == RIGHT)
+    {
+      right=false;
+    } else if (keyCode == LEFT)
+    {
+      left=false;
+    }
+  }
+}
+Car bob= new Car(carSpeed_bob, 375, 75, (int)random(100, 200), (int)random(50, 75));
+Car bobo= new Car(carSpeed_bobo, 100, 275, (int)random(100, 200), (int)random(50, 75));
+Car bobob= new Car(carSpeed_bobob, 750, 375, (int)random(100, 200), (int)random(50, 75));
+Car bobobo= new Car(carSpeed_bobobo, 600, 450, (int)random(100, 200), (int)random(50, 75));
 public class Car {
   int carSpeed;
   int carX;
@@ -56,6 +94,11 @@ public class Car {
   }
   void move() {
     carX=carX+carSpeed;
+    if (carX<-carWidth) {
+      carX=width;
+    } else if (carX>width) {
+      carX=-carWidth;
+    }
   }
   void display() 
   {
