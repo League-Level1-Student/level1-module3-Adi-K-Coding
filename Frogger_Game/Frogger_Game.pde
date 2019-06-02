@@ -10,22 +10,50 @@ boolean up= false;
 boolean down= false;
 boolean left= false;
 boolean right= false;
+boolean isPlaying=true;
 void setup () {
   size(800, 600);
 }
 void draw() {
-  background(0, 0, 0);
-  move();
-  fill(211, 70, 188);
-  ellipse(frogX, frogY, 50, 50);
-  bob.move();
-  bobo.move();
-  bobob.move();
-  bobobo.move();
-  bob.display();
-  bobo.display();
-  bobob.display();
-  bobobo.display();
+  if (isPlaying==true) {
+    background(0, 0, 0);
+    move();
+    fill(211, 70, 188);
+    ellipse(frogX, frogY, 50, 50);
+    bob.move();
+    bobo.move();
+    bobob.move();
+    bobobo.move();
+    bob.display();
+    bobo.display();
+    bobob.display();
+    bobobo.display();
+    if (intersects(bob)) {
+      isPlaying=false;
+    } 
+    if (intersects(bobo)) {
+      isPlaying=false;
+    } 
+    if (intersects(bobob)) {
+      isPlaying=false;
+    } 
+    if (intersects(bobobo)) {
+      isPlaying=false;
+    } 
+  } else {
+    background(255,255,255);
+    fill(0, 0, 0);
+    textSize(50);
+    text("Game Over", 250, 300);
+  }
+}
+boolean intersects(Car car) {
+  if ((frogY > car.getY() && frogY < car.getY()+car.getHeight() &&
+    (frogX > car.getX() && frogX < car.getX()+car.getWidth()))) {
+    return true;
+  } else {
+    return false;
+  }
 }
 void move() {
   if (up&&(frogY>=5)) {
@@ -104,5 +132,17 @@ public class Car {
   {
     fill(0, 255, 0);
     rect(carX, carY, carWidth, carHeight);
+  }
+  int getX() {
+    return carX;
+  }
+  int getY() {
+    return carY;
+  }
+  int getWidth() {
+    return carWidth;
+  }
+  int getHeight() {
+    return carHeight;
   }
 }
