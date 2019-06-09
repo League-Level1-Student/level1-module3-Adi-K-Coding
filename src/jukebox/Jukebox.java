@@ -5,6 +5,8 @@ package jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -23,7 +25,7 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, ActionListener {
 
     public void run() {
 
@@ -32,11 +34,21 @@ public class Jukebox implements Runnable {
     	
 		// 3. Play the Song
     	JFrame frame = new JFrame();
+    	frame.isVisible();
     	JPanel panel = new JPanel();
+    	frame.add(panel);
     	JButton b1 = new JButton("Play");
     	JButton b2 = new JButton("Play");
     	JButton b3 = new JButton("Play");
     	JButton b4 = new JButton("Play");
+    	panel.add(b1);
+    	panel.add(b2);
+    	panel.add(b3);
+    	panel.add(b4);
+    	b1.addActionListener(this);
+    	b2.addActionListener(this);
+    	b3.addActionListener(this);
+    	b4.addActionListener(this);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	Song bob = new Song("babyshark.mp3");
     	bob.play();
@@ -61,6 +73,13 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		e.getSource();
 	}
 
 }
