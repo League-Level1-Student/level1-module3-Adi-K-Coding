@@ -12,7 +12,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -26,9 +29,23 @@ public class Jukebox implements Runnable {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+    	
 		// 3. Play the Song
-
+    	JFrame frame = new JFrame();
+    	JPanel panel = new JPanel();
+    	JButton b1 = new JButton("Play");
+    	JButton b2 = new JButton("Play");
+    	JButton b3 = new JButton("Play");
+    	JButton b4 = new JButton("Play");
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	Song bob = new Song("babyshark.mp3");
+    	bob.play();
+    	Song bobo = new Song("allstar.mp3");
+    	bobo.play();
+    	Song bobob = new Song("letitgo.mp3");
+    	bobob.play();
+    	Song bobobo = new Song("captainplanet.mp3");
+    	bobobo.play();
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
