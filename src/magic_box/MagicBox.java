@@ -11,8 +11,11 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -32,7 +35,9 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 * e.getY()) will give you the color of the current pixel.
 	 */
 	BufferedImage backgroundImage;
-
+	MediaPalace mp = new MediaPalace();
+	JFrame frame1 = new JFrame();
+JLabel label= new JLabel();
 	@Override
 	public void run() {
 		try {
@@ -50,6 +55,15 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
+		frame1.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	try {
+		label=mp.loadImageFromTheInternet("https://i.redd.it/2extfnract2y.png");
+	} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -69,25 +83,35 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		int color = backgroundImage.getRGB(e.getX(), e.getY());
+		System.out.println(color);
+		if (color == -13726830) {
+				frame1.add(label);
+				frame1.pack();
+		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+
 	}
 }
