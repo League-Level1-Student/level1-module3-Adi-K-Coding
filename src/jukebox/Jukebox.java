@@ -4,7 +4,6 @@ package jukebox;
  *    Level 1
  */
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -26,48 +25,48 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
 public class Jukebox implements Runnable, ActionListener {
+	JButton b1 = new JButton("Baby Shark");
+	JButton b2 = new JButton("All Star");
+	JButton b3 = new JButton("Let It Go");
+	JButton b4 = new JButton("Captain Planet");
+	Song bob = new Song("babyshark.mp3");
+	Song bobo = new Song("allstar.mp3");
+	Song bobob = new Song("letitgo.mp3");
+	Song bobobo = new Song("captainplanet.mp3");
+	Song current = bob;
+	JButton stop = new JButton("Stop");
 
-    public void run() {
+	public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-    	
+
 		// 3. Play the Song
-    	JFrame frame = new JFrame();
-    	frame.isVisible();
-    	JPanel panel = new JPanel();
-    	frame.add(panel);
-    	JButton b1 = new JButton("Play");
-    	JButton b2 = new JButton("Play");
-    	JButton b3 = new JButton("Play");
-    	JButton b4 = new JButton("Play");
-    	panel.add(b1);
-    	panel.add(b2);
-    	panel.add(b3);
-    	panel.add(b4);
-    	b1.addActionListener(this);
-    	b2.addActionListener(this);
-    	b3.addActionListener(this);
-    	b4.addActionListener(this);
-    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	Song bob = new Song("babyshark.mp3");
-    	bob.play();
-    	Song bobo = new Song("allstar.mp3");
-    	bobo.play();
-    	Song bobob = new Song("letitgo.mp3");
-    	bobob.play();
-    	Song bobobo = new Song("captainplanet.mp3");
-    	bobobo.play();
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		JPanel panel = new JPanel();
+		frame.add(panel);
+		frame.setSize(550, 60);
+		panel.add(b1);
+		panel.add(b2);
+		panel.add(b3);
+		panel.add(b4);
+		panel.add(stop);
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		b4.addActionListener(this);
+		stop.addActionListener(this);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		/*
-		 * 4. Create a user interface for your Jukebox so that the user can to
-		 * choose which song to play. You can use can use a different button for
-		 * each song, or a picture of the album cover. When the button or album
-		 * cover is clicked, stop the currently playing song, and play the one
-		 * that was selected.
+		 * 4. Create a user interface for your Jukebox so that the user can to choose
+		 * which song to play. You can use can use a different button for each song, or
+		 * a picture of the album cover. When the button or album cover is clicked, stop
+		 * the currently playing song, and play the one that was selected.
 		 */
-    }
-    
-    
+	}
+
 	/* Use this method to add album covers to your Panel. */
 	private JLabel loadImage(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
@@ -75,13 +74,30 @@ public class Jukebox implements Runnable, ActionListener {
 		return new JLabel(icon);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		e.getSource();
-	}
+		JButton pressed = (JButton) e.getSource();
+		current.stop();
 
+		if (pressed == b1) {
+			current = bob;
+
+		} else if (pressed == b2) {
+			current = bobo;
+
+		} else if (pressed == b3) {
+			current = bobob;
+
+		} else if (pressed == b4) {
+			current = bobobo;
+
+		}
+		current.play();
+		if (pressed == stop) {
+			current.stop();
+		}
+		
+	}
 }
 
 class Song {
@@ -92,8 +108,7 @@ class Song {
 	private InputStream songStream;
 
 	/**
-	 * Songs can be constructed from files on your computer or Internet
-	 * addresses.
+	 * Songs can be constructed from files on your computer or Internet addresses.
 	 * 
 	 * Examples: <code> 
 	 * 		new Song("everywhere.mp3"); 	//from default package 
@@ -168,4 +183,3 @@ class Song {
 		}
 	}
 }
-

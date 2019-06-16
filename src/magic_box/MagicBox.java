@@ -1,10 +1,9 @@
 package magic_box;
+
 /*
  *    Copyright (c) The League of Amazing Programmers 2013-2019
  *    Level 1
  */
-
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -12,30 +11,27 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
-
 	/*
-	 * We are going to hide secrets within the magic box. 
-	 * When the user clicks on a secret place, stuff will happen.
+	 * We are going to hide secrets within the magic box. When the user clicks on a
+	 * secret place, stuff will happen.
 	 * 
 	 * 1. Make the frame respond to mouse clicks.
 	 * 
-	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
-	 *    show images or speak.
+	 * 2. When the mouse is clicked, use the Media Palace (read the code in the
+	 * magic_box package) to play sounds, show images or speak.
 	 * 
-	 * 3. Choose 3 different locations on the background image.You can either use the mouse position, 
-	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
-	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
+	 * 3. Choose 3 different locations on the background image.You can either use
+	 * the mouse position, or the color of the image, then decide what action the
+	 * Media Palace should take in each case. backgroundImage.getRGB(e.getX(),
+	 * e.getY()) will give you the color of the current pixel.
 	 */
-
 	BufferedImage backgroundImage;
-
 
 	@Override
 	public void run() {
@@ -73,33 +69,25 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
-
 }
-
-
