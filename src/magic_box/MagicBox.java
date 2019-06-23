@@ -37,7 +37,8 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	BufferedImage backgroundImage;
 	MediaPalace mp = new MediaPalace();
 	JFrame frame1 = new JFrame();
-JLabel label= new JLabel();
+	JLabel label = new JLabel();
+
 	@Override
 	public void run() {
 		try {
@@ -58,12 +59,12 @@ JLabel label= new JLabel();
 		frame.addMouseListener(this);
 		frame1.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	try {
-		label=mp.loadImageFromTheInternet("https://i.redd.it/2extfnract2y.png");
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+		try {
+			label = mp.loadImageFromTheInternet("https://i.redd.it/2extfnract2y.png");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -86,15 +87,24 @@ JLabel label= new JLabel();
 		int color = backgroundImage.getRGB(e.getX(), e.getY());
 		System.out.println(color);
 		if (color == -13726830) {
-				frame1.add(label);
-				frame1.pack();
+			frame1.add(label);
+			frame1.pack();
+
+		}
+		if (color == -9911626) {
+mp.loadSound("celebrate(actual).wav");
+			mp.playMusicOnComputer("src/magic_box/celebrate(actual).wav");
 		}
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		MediaPalace mp = new MediaPalace();
+		int color = backgroundImage.getRGB(e.getX(), e.getY());
+		if (color == -5142949) {
+			mp.speak("congratulations");
+		}
 	}
 
 	@Override
